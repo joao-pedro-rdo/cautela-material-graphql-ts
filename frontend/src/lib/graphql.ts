@@ -1,6 +1,11 @@
 import { GraphQLClient } from 'graphql-request';
 
-export const client = new GraphQLClient('http://localhost:4000/graphql');
+// Use variável de ambiente ou detecte automaticamente
+const GRAPHQL_URL = process.env.NODE_ENV === 'production' 
+  ? 'http://localhost:4000/graphql'  // Para Docker
+  : 'http://localhost:4000/graphql'; // Para desenvolvimento
+
+export const client = new GraphQLClient(GRAPHQL_URL);
 
 // Queries
 export const GET_CAUTELAS = `

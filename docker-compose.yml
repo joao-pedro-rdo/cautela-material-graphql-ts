@@ -1,0 +1,38 @@
+services:
+  # Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cautela-backend
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_URL=file:./dev.db
+      - NODE_ENV=production
+    volumes:
+      - ./backend/prisma/dev.db:/app/prisma/dev.db
+    # restart: unless-stopped
+    networks:
+      - cautela-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cautela-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    # restart: unless-stopped
+    networks:
+      - cautela-network
+
+networks:
+  cautela-network:
+    driver: bridge
+
+volumes:
+  db-data:
