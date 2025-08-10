@@ -1,5 +1,7 @@
 import { gql } from "apollo-server-express";
 
+//  se for '!' o retorno sempre vai ser um texto
+
 export const typeDefs = gql`
   scalar DateTime
 
