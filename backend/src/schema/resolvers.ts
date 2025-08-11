@@ -1,6 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 import { DateTimeResolver } from "graphql-scalars";
 
+// Formato completo de um resolver:
+//*nomeDoResolver: (parent, args, context, info) => {
+// parent: resultado do resolver pai (não usado aqui)
+// args: argumentos enviados na query/mutation
+// context: dados compartilhados (user, db, etc.)
+// info: metadados da query GraphQL
+//};
+
 const prisma = new PrismaClient();
 
 export const resolvers = {

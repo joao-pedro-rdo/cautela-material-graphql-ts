@@ -10,6 +10,8 @@
     "mhutchie.git-graph",
     "usernamehw.errorlen",
     "docker.docker",
-    "svelte.svelte-vscode"
+    "svelte.svelte-vscode",
+    "graphql.vscode-graphql-syntax",
+    "graphql.vscode-graphql"
   ]
 }

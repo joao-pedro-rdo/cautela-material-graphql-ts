@@ -1,7 +1,7 @@
-import { gql } from "apollo-server-express";
+import { gql } from "apollo-server";
 
 //  se for '!' o retorno sempre vai ser um texto
-
+// aqui definomos a especie de rota que teremos
 export const typeDefs = gql`
   scalar DateTime
 

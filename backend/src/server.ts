@@ -1,11 +1,8 @@
-import express from "express";
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer } from "apollo-server";
 import { typeDefs } from "./schema/typeDefs";
 import { resolvers } from "./schema/resolvers";
 
 async function startServer() {
-  const app = express();
-
   // Criar servidor Apollo (removemos a propriedade playground)
   const server = new ApolloServer({
     typeDefs,
@@ -16,12 +13,9 @@ async function startServer() {
 
   await server.start();
 
-  // Aplicar middleware do GraphQL
-  server.applyMiddleware({ app, path: "/graphql" });
-
   const PORT = process.env.PORT || 4000;
 
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(
       `🚀 Servidor rodando em http://localhost:${PORT}${server.graphqlPath}`
     );
