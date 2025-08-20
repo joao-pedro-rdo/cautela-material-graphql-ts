@@ -14,3 +14,16 @@ export interface ICautelaAdapter {
   createdAt: any; //? How to resolve DateTime
   updatedAt: any; //? How to resolve DateTime
 }
+export interface CreateCautelaInput {
+  nomeCautelador: string;
+  contatoCautelador: string;
+  deOnde: string;
+  motivoCautela: string;
+  previsaoRetorno: string;
+  cauteladorResponsavel: string;
+}
+
+export interface DevolverCautelaInput {
+  id: string;
+  //   observacoes?: string;
+}

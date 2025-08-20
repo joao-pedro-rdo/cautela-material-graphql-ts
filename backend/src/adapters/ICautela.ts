@@ -1,4 +1,4 @@
-import { ICautelaAdapter } from "./adapter";
+import { ICautelaAdapter } from "./adapters";
 
 class Cautela implements ICautelaAdapter {
   public id: String;
@@ -7,7 +7,7 @@ class Cautela implements ICautelaAdapter {
   public deOnde: String;
   public motivoCautela: String;
   public dataHoraCautela: Date | null;
-  public previsaoRetorno: Date | null;
+  public previsaoRetorno: Date;
   public cauteladorResponsavel: String;
   public devolvido: Boolean;
   public dataHoraDevolucao: Date | null;
@@ -32,4 +32,15 @@ class Cautela implements ICautelaAdapter {
     this.createdAt = new Date(obj.createdAt);
     this.updatedAt = new Date(obj.updatedAt);
   }
+
+  devolver(): void {
+    this.devolvido = true;
+    this.dataHoraDevolucao = new Date();
+  }
+
+  isAtrasada(): boolean {
+    if (this.previsaoRetorno < new Date()) return true;
+    return false;
+  }
 }
+export { Cautela };
