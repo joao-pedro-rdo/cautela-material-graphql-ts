@@ -1,30 +1,28 @@
-import { ApolloServer } from "apollo-server";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema/typeDefs";
 import { resolvers } from "./schema/resolvers";
 
 async function startServer() {
-  // Criar servidor Apollo (removemos a propriedade playground)
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    // Apenas introspection para habilitar o GraphQL Studio
     introspection: true,
   });
 
-  await server.start();
+  const PORT = Number(process.env.PORT) || 4000;
 
-  const PORT = process.env.PORT || 4000;
+  try {
+    const { url } = await startStandaloneServer(server, {
+      listen: { port: PORT },
+    });
 
-  server.listen(PORT, () => {
-    console.log(
-      `🚀 Servidor rodando em http://localhost:${PORT}${server.graphqlPath}`
-    );
-    console.log(
-      `📊 GraphQL Studio: http://localhost:${PORT}${server.graphqlPath}`
-    );
-  });
+    console.log(`🚀 Servidor GraphQL rodando em ${url}`);
+    console.log(`📊 GraphQL Studio: ${url}`);
+    console.log(`📱 Pronto para receber mutations de notificação!`);
+  } catch (error) {
+    console.error("❌ Erro ao iniciar servidor:", error);
+  }
 }
 
-startServer().catch((error) => {
-  console.error("Erro ao iniciar servidor:", error);
-});
+startServer();
