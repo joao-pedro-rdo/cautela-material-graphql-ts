@@ -15,6 +15,7 @@ export interface ICautelaAdapter {
   updatedAt: any; //? How to resolve DateTime
 }
 export interface CreateCautelaInput {
+  //TODO Trasnformar em DTO
   nomeCautelador: string;
   contatoCautelador: string;
   deOnde: string;
@@ -24,6 +25,11 @@ export interface CreateCautelaInput {
 }
 
 export interface DevolverCautelaInput {
+  //TODO Trasnformar em DTO
+  //   Transformar interfaces em classes
+  // Adicionar validações
+  // Implementar métodos de transformação
+
   id: string;
   //   observacoes?: string;
 }

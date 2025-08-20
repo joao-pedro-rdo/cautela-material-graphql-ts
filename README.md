@@ -4,6 +4,13 @@
 
 Um sistema completo para controlar a cautela de materiais da seção de TI, desenvolvido como projeto prático para aprender e testar **GraphQL** no backend e **Svelte** no frontend.
 
+Princípios SOLID Aplicados: 4/5
+✅ SRP, OCP, ISP aplicados corretamente
+⚠️ LSP parcialmente aplicado
+❌ DIP precisa de melhorias no container
+
+⚠️ DTO, não usado ainda
+
 ## 🎯 Objetivo do Projeto
 
 Este projeto foi criado com fins **educacionais e práticos** para criar uma aplicação para controlar a cautela de materiais:
