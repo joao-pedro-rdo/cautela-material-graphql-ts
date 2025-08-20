@@ -12,6 +12,16 @@ import { CreateCautelaInput, DevolverCautelaInput } from "../adapters/adapters";
 // info: metadados da query GraphQL
 //};
 
+//* Podemos passar as classses por caontexto tambnem para ser usado ai usariamos desse modo
+// const resolvers = {
+//   Query: {
+//     cautelas: async (parent, args, context) => {
+//       // Usa o service, não o repository diretamente
+//       return context.cautelaService.buscarCautelas();
+//     },
+//   },
+// };
+
 // Dependency Injection Container
 const prisma = new PrismaClient();
 const cautelaRepository = new CautelaRepository(prisma);
