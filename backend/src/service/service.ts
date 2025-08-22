@@ -1,5 +1,5 @@
 import { CreateCautelaInput, DevolverCautelaInput } from "../adapters/adapters";
-import { Cautela } from "../adapters/ICautela";
+import { Cautela } from "../adapters/ClassCautela";
 import { IcautelaRepository } from "../repository/repository";
 
 export class CautelaService {
@@ -31,8 +31,14 @@ export class CautelaService {
 
   async devolverCautela(input: DevolverCautelaInput): Promise<Cautela | null> {
     const cautela = await this.cautelaRepository.findById(input.id);
+
     if (!cautela) throw new Error("Cautela não encontrada");
-    if (cautela.devolvido) throw new Error("Cautela já devolvida");
+
+    try {
+      cautela.devolver();
+    } catch (error) {
+      console.error("Erro ao devolver cautela:", error);
+    }
 
     const devolverCautela = await this.cautelaRepository.devolver(input);
     return devolverCautela;

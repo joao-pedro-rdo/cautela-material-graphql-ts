@@ -10,6 +10,11 @@ Princípios SOLID Aplicados: 4/5
 ❌ DIP precisa de melhorias no container
 
 ⚠️ DTO, não usado ainda
+✅ State implementado para controlar o estado da cautela
+
+[ ] **Preciso melhorar os arquivos graohQL para auxiliar nos testes e prarar consultas**
+
+[ ] **Com a refatoracao para STATE o front parou de funcionar**
 
 ## 🎯 Objetivo do Projeto
 
