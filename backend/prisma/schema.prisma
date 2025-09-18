@@ -22,9 +22,12 @@ model Cautela {
   devolvido              Boolean  @default(false)
   dataHoraDevolucao      DateTime?
   observacoes            String?
-  
+  estadoNome            String    @default("realizado")   
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
 
+
   @@map("cautelas")
 }
+
+

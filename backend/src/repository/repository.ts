@@ -1,5 +1,5 @@
 // Aqui ficam a classe com os métodos para manipulação de cautelas no banco de dados com prisma
-import { Cautela } from "../adapters/ICautela";
+import { Cautela } from "../adapters/ClassCautela";
 import { DevolverCautelaInput, ICautelaAdapter } from "../adapters/adapters";
 
 export interface IcautelaRepository {
@@ -8,7 +8,10 @@ export interface IcautelaRepository {
   findById(id: string): Promise<Cautela | null>; // busca uma cautela pelo ID
   // Mutations
   create(
-    cautela: Omit<ICautelaAdapter, "id" | "createdAt" | "updatedAt">
+    cautela: Omit<
+      ICautelaAdapter,
+      "id" | "createdAt" | "updatedAt" | "estadoNome" | "estado"
+    >
   ): Promise<Cautela>; // cria uma nova cautela
   update(id: string, cautela: Cautela): Promise<Cautela | null>; // atualiza uma cautela existente
   delete(id: string): Promise<boolean>; // deleta uma cautela
@@ -45,6 +48,10 @@ export class CautelaRepository implements IcautelaRepository {
         ...data,
         previsaoRetorno: new Date(data.previsaoRetorno),
         dataHoraCautela: new Date(data.dataHoraCautela),
+
+        //Acho que nao precisa disso pois é default
+        // estadoNome: "realizado", // Estado inicial
+        devolvido: false,
       },
     });
     return new Cautela(cautela);
@@ -53,17 +60,29 @@ export class CautelaRepository implements IcautelaRepository {
   //Acha todas as cautelas ativas (não devolvidas)
   async findActive(): Promise<Cautela[]> {
     const cautelas = await this.prisma.cautela.findMany({
-      where: { devolvido: false },
+      // where :{devolvido : false} //! retirei para atender o design patter
+      where: { estadoNome: { not: "devolvido" } },
       orderBy: { createdAt: "desc" },
     });
     return cautelas.map((cautela: Cautela) => new Cautela(cautela));
   }
 
-  // Atualiza uma cautela existente
+  // // Atualiza uma cautela existente
   async update(id: string, data: Partial<ICautelaAdapter>): Promise<Cautela> {
     const cautela = await this.prisma.cautela.update({
       where: { id },
       data,
+      //!tenho fé que vai dar pra fazer sem o metodo de persistir
+    });
+    return new Cautela(cautela);
+  }
+
+  //? Esse metodo parece errado pois agora é minha classe que gerencia o estado
+  // Método para atualizar apenas o estado
+  async updateEstado(id: string, estadoNome: string): Promise<Cautela> {
+    const cautela = await this.prisma.cautela.update({
+      where: { id },
+      data: { estadoNome },
     });
     return new Cautela(cautela);
   }
