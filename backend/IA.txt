@@ -1,0 +1,1 @@
+#file:src analise meu backend graphQl onde tento usar orientação a objetos e design paterns e me diga se esta de acodros com os principios solid se sim quais se nao quais tambem e me diga se tem dicas de melhorias para minha artquitetura de pastas e arquivos

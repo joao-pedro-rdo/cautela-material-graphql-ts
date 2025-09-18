@@ -1,0 +1,12 @@
+# URL do banco SQLite
+DATABASE_URL="file:./dev.db"
+
+# Porta do servidor (opcional)
+PORT=4000
+
+# Ambiente de desenvolvimento
+NODE_ENV=development
+
+# GraphQL
+GRAPHQL_INTROSPECTION=true
+GRAPHQL_PLAYGROUND=true

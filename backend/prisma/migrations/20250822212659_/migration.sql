@@ -11,6 +11,7 @@ CREATE TABLE "cautelas" (
     "devolvido" BOOLEAN NOT NULL DEFAULT false,
     "dataHoraDevolucao" DATETIME,
     "observacoes" TEXT,
+    "estadoNome" TEXT NOT NULL DEFAULT 'realizado',
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );
