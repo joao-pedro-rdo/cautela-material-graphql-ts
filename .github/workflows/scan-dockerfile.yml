@@ -21,3 +21,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           API_TOKEN: ${{ secrets.API_GIMINI }}
           MODEL_NAME: "gemini-1.5-flash"
+          NAME_DOCKERFILE: "Dockerfile-back"
+      - name: Scan-front
+        id: scan-dockerfile2
+        uses: joao-pedro-rdo/scan-dockerfile@develop
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          API_TOKEN: ${{ secrets.API_GIMINI }}
+          MODEL_NAME: "gemini-1.5-flash"
+          NAME_DOCKERFILE: "Dockerfile-front"
+        
